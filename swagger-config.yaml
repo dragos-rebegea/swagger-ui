@@ -1,4 +1,31 @@
----
-url: "https://petstore.swagger.io/v2/swagger.json"
-dom_id: "#swagger-ui"
-validatorUrl: "https://validator.swagger.io/validator"
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Relayers API"
+  contact:
+    email: "contact@elrond.com"
+basePath: "/node"
+tags:
+- name: "node"
+  description: "Node"
+schemes:
+- "http"
+paths:
+  /status?name={metric}:
+    get:
+      tags:
+      - "node"
+      summary: "Gets the information about the given metric"
+      operationId: "status-by-metric"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: metric
+          required: true
+          description: The wanted metric
+          type: string
+          enum: [ElrondToEth, EthToElrond, elrond-client, eth-client]
+      responses:
+        '200':
+          description: A list of available metrics
